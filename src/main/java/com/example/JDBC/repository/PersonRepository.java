@@ -11,13 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class PersonRepository {
+public class PersonRepository implements IPerson {
 
     private final Connection connection;
     PersonRepository(Connection connection) throws SQLException {
         this.connection=connection;
         createTable();
     }
+    @Override
     public List<Person> getAllPerson(){
         List<Person> list = new ArrayList<>();
         try{
@@ -37,10 +38,12 @@ public class PersonRepository {
         connection.createStatement().execute("create table if not exists person (name varchar(25) , id int);");
     }
 
+    @Override
     public boolean addPerson(Person person) throws SQLException {
         return  connection.createStatement().execute("insert into person (name, id) Values ('"+ person.getName() + "' , '"+person.getId()+"' )");
     }
 
+    @Override
     public int updatePerson(String name, Integer id) {
         try {
             PreparedStatement statement=connection.prepareStatement("update person set name =? where id=?");
