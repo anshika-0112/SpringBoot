@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class PersonService {
     @Autowired
-    @Qualifier("personRepository")
+    @Qualifier("springJdbcPerson")
     private IPerson iPerson;
     public List<Person> getAllPerson() throws SQLException {
         return iPerson.getAllPerson();
