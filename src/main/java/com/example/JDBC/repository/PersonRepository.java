@@ -44,12 +44,17 @@ public class PersonRepository implements IPerson {
     }
 
     @Override
-    public int updatePerson(String name, Integer id) {
+    public int updatePerson(String name, Integer id) throws SQLException {
+        boolean autoCommit=connection.getAutoCommit();
         try {
+            connection.setAutoCommit(false);
             PreparedStatement statement=connection.prepareStatement("update person set name =? where id=?");
             statement.setString(1,name);
             statement.setInt(2,id);
-            return statement.executeUpdate();
+            int res=statement.executeUpdate();
+            connection.commit();
+            connection.setAutoCommit(autoCommit);
+            return res;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
