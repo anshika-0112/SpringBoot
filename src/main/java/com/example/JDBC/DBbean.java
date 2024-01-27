@@ -16,12 +16,12 @@ public class DBbean {
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc", "root", "");
     }
 
-    @Bean
-    public DataSource getDb(){
-        DataSourceBuilder builder= DataSourceBuilder.create(); //helps us to create object of DataSource
-        builder.url("jdbc:mysql://localhost:3306/jdbc");
-        builder.username("root");
-        builder.password("");
-        return builder.build();
-    }
+//    @Bean
+//    public DataSource getDb(){
+//        DataSourceBuilder builder= DataSourceBuilder.create(); //helps us to create object of DataSource
+//        builder.url("jdbc:mysql://localhost:3306/jdbc");
+//        builder.username("root");
+//        builder.password("");
+//        return builder.build();
+//    }
 }

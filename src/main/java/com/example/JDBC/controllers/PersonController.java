@@ -1,5 +1,6 @@
 package com.example.JDBC.controllers;
 
+import com.example.JDBC.CustomException;
 import com.example.JDBC.JdbcApplication;
 import com.example.JDBC.Person;
 import com.example.JDBC.services.PersonService;
@@ -26,7 +27,7 @@ public class PersonController {
     }
 
     @PostMapping("/addPerson")
-    private ResponseEntity<Boolean> addPerson(@RequestBody Person person) throws SQLException {
+    private ResponseEntity<Boolean> addPerson(@RequestBody Person person) throws SQLException, CustomException {
         log.info("name is here "+ person.getName());
         if(person.getName()==null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
